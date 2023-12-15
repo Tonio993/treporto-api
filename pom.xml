@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>it.traininground</groupId>
-	<artifactId>treporto</artifactId>
+	<artifactId>treporto-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>treporto-api</name>
 	<description>API Treporto</description>
@@ -43,13 +43,19 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>it.traininground</groupId>
+			<artifactId>treporto-lib</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
