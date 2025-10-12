@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:h2:file:./test
-    username: test
-    password: test
+    url: jdbc:h2:tcp://localhost:9092/C:/db/treporto/test;AUTO_SERVER=TRUE
+    username: sa
+    password:
     driverClassName: org.h2.Driver
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
