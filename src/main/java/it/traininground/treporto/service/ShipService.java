@@ -1,35 +1,17 @@
 package it.traininground.treporto.service;
 
 import it.traininground.treporto.entity.registry.ShipEntity;
-import it.traininground.treporto.mapper.registry.ShipMapper;
+import it.traininground.treporto.mapper.common.ModelEntityMapper;
 import it.traininground.treporto.model.registry.ShipModel;
-import it.traininground.treporto.repository.ShipRepository;
 import it.traininground.treporto.service.common.CommonRepositoryService;
+import jakarta.persistence.EntityManager;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
-import java.util.stream.StreamSupport;
-
 @Service
-public class ShipService {
+public class ShipService extends CommonRepositoryService<ShipModel, ShipEntity> {
 
-    private final ShipRepository invoiceRepository;
-    private final ShipMapper shipMapper;
-    private final CommonRepositoryService commonRepositoryService;
-
-    public ShipService(ShipRepository invoiceRepository, ShipMapper shipMapper, CommonRepositoryService commonRepositoryService) {
-        this.invoiceRepository = invoiceRepository;
-        this.shipMapper = shipMapper;
-        this.commonRepositoryService = commonRepositoryService;
+    protected ShipService(EntityManager entityManager, ModelEntityMapper<ShipModel, ShipEntity> modelEntityMapper) {
+        super(entityManager, modelEntityMapper, ShipEntity.class);
     }
 
-    public List<ShipModel> get(Map<String, String> filter) {
-        return StreamSupport.stream(commonRepositoryService.get(ShipEntity.class, filter).spliterator(), false).map(shipMapper::toModel).toList();
-    }
-
-    public void add(ShipModel invoice) {
-        ShipEntity shipEntity = shipMapper.toEntity(invoice);
-        invoiceRepository.save(shipEntity);
-    }
 }

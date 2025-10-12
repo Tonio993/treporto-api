@@ -1,34 +1,49 @@
 package it.traininground.treporto.service.common;
 
+import it.traininground.treporto.entity.BaseEntity;
+import it.traininground.treporto.mapper.common.ModelEntityMapper;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
-import org.springframework.stereotype.Service;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.StreamSupport;
 
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
-@Service
-public class CommonRepositoryService {
+public abstract class CommonRepositoryService<MODEL, ENTITY extends BaseEntity> {
 
     private final EntityManager entityManager;
+    private final ModelEntityMapper<MODEL, ENTITY> modelEntityMapper;
+    private final Class<ENTITY> entityClazz;
 
-    public CommonRepositoryService(EntityManager entityManager) {
+    protected CommonRepositoryService(EntityManager entityManager, ModelEntityMapper<MODEL, ENTITY> modelEntityMapper, Class<ENTITY> entityClazz) {
         this.entityManager = entityManager;
+        this.modelEntityMapper = modelEntityMapper;
+        this.entityClazz = entityClazz;
     }
 
-    public <T> List<T> get(Class<T> clazz, Map<String, String> filter) {
+    public Optional<MODEL> get(Long id) {
+        return Optional.ofNullable(entityManager.find(entityClazz, id)).map(modelEntityMapper::toModel);
+    }
+
+    public List<MODEL> get(Map<String, String> filter) {
+        return StreamSupport.stream(getEntity(filter).spliterator(), false).map(modelEntityMapper::toModel).toList();
+    }
+
+    private List<ENTITY> getEntity(Map<String, String> filter) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<T> query = builder.createQuery(clazz);
-        Root<T> root = query.from(clazz);
+        CriteriaQuery<ENTITY> query = builder.createQuery(entityClazz);
+        Root<ENTITY> root = query.from(entityClazz);
         query.where(filter.entrySet().stream().map(entry -> getPredicate(builder, root, entry.getKey(), entry.getValue())).toArray(Predicate[]::new));
         return entityManager.createQuery(query).getResultList();
     }
 
-    private <T> Predicate getPredicate(CriteriaBuilder builder, Path<T> path, String key, String value) {
+    private Predicate getPredicate(CriteriaBuilder builder, Path<ENTITY> path, String key, String value) {
         Pattern filterPattern = Pattern.compile("(\\w+?)(?:__(\\w+?))?");
         Matcher matcher = filterPattern.matcher(key);
         if (!matcher.matches()) {
@@ -51,6 +66,14 @@ public class CommonRepositoryService {
             default -> throw new IllegalArgumentException("Filter type " + type + " unrecognized");
         };
 
+    }
+
+    @Transactional
+    public Long add(MODEL model) {
+        ENTITY entity = modelEntityMapper.toEntity(model);
+        entity.setId(null);
+        entityManager.persist(entity);
+        return entity.getId();
     }
 
 }
