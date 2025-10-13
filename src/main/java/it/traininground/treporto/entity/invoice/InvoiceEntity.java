@@ -38,7 +38,8 @@ public class InvoiceEntity extends BaseEntity {
     @JoinColumn(name = "id_company")
     private CompanyEntity company;
 
-    @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id_invoice")
     @Fetch(FetchMode.SUBSELECT)
     private List<InvoiceSectionEntity> sectionList;
 

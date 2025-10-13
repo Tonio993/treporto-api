@@ -2,6 +2,7 @@ package it.traininground.treporto.service.common;
 
 import it.traininground.treporto.entity.BaseEntity;
 import it.traininground.treporto.mapper.common.ModelEntityMapper;
+import it.traininground.treporto.model.BaseModel;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
 import jakarta.transaction.Transactional;
@@ -15,7 +16,7 @@ import java.util.stream.StreamSupport;
 
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
-public abstract class CommonRepositoryService<MODEL, ENTITY extends BaseEntity> {
+public abstract class CommonRepositoryService<MODEL extends BaseModel, ENTITY extends BaseEntity> {
 
     private final EntityManager entityManager;
     private final ModelEntityMapper<MODEL, ENTITY> modelEntityMapper;
@@ -69,11 +70,30 @@ public abstract class CommonRepositoryService<MODEL, ENTITY extends BaseEntity> 
     }
 
     @Transactional
-    public Long add(MODEL model) {
+    public MODEL add(MODEL model) {
         ENTITY entity = modelEntityMapper.toEntity(model);
         entity.setId(null);
         entityManager.persist(entity);
-        return entity.getId();
+        return modelEntityMapper.toModel(entity);
+    }
+
+    @Transactional
+    public Optional<MODEL> update(Long id, MODEL newModel) {
+        return get(id).map(currModel -> {
+            ENTITY newEntity = modelEntityMapper.toEntity(newModel);
+            newEntity.setId(id);
+            return modelEntityMapper.toModel(entityManager.merge(newEntity));
+        });
+    }
+
+    @Transactional
+    public boolean delete(Long id) {
+        ENTITY entity = entityManager.find(entityClazz, id);
+        if (entity != null) {
+            entityManager.remove(entity);
+            return true;
+        }
+        return false;
     }
 
 }

@@ -5,6 +5,6 @@ import it.traininground.treporto.mapper.common.ModelEntityMapper;
 import it.traininground.treporto.model.fare.FareModel;
 import org.mapstruct.Mapper;
 
-@Mapper(config = ModelEntityMapper.class)
+@Mapper(config = ModelEntityMapper.class, uses = FareThresholdMapper.class)
 public interface FareMapper extends ModelEntityMapper<FareModel, FareEntity> {
 }

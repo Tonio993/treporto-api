@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 public class GoodsTransportEntity extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name = "id_section")
     private InvoiceSectionEntity invoiceSection;
 
     @Column

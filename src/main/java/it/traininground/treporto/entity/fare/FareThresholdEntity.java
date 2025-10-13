@@ -3,7 +3,6 @@ package it.traininground.treporto.entity.fare;
 import it.traininground.treporto.entity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,7 +15,6 @@ import java.math.BigDecimal;
 public class FareThresholdEntity extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name = "id_fare")
     private FareEntity fare;
 
     @Column

@@ -5,6 +5,6 @@ import it.traininground.treporto.mapper.common.ModelEntityMapper;
 import it.traininground.treporto.model.port.QuayModel;
 import org.mapstruct.Mapper;
 
-@Mapper(config = ModelEntityMapper.class)
+@Mapper(config = ModelEntityMapper.class, uses = PortMapper.class)
 public interface QuayMapper extends ModelEntityMapper<QuayModel, QuayEntity> {
 }

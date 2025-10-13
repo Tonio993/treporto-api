@@ -20,7 +20,6 @@ import java.util.List;
 public class InvoiceSectionEntity extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name = "id_invoice")
     private InvoiceEntity invoice;
 
     @Column
@@ -32,11 +31,13 @@ public class InvoiceSectionEntity extends BaseEntity {
     @Column
     private BigDecimal discount;
 
-    @OneToMany(mappedBy = "invoiceSection")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id_section")
     @Fetch(FetchMode.SUBSELECT)
     private List<PerformanceEntity> performanceList;
 
-    @OneToMany(mappedBy = "invoiceSection")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id_section")
     @Fetch(FetchMode.SUBSELECT)
     private List<GoodsTransportEntity> goodsTransportList;
 }

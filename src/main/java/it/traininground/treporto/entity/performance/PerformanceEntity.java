@@ -17,7 +17,6 @@ import java.math.BigDecimal;
 public class PerformanceEntity extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name = "id_section")
     private InvoiceSectionEntity invoiceSection;
 
     @ManyToOne

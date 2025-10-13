@@ -2,9 +2,7 @@ package it.traininground.treporto.entity.fare;
 
 import it.traininground.treporto.entity.BaseEntity;
 import it.traininground.treporto.enums.ShipType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -23,7 +21,8 @@ public class FareEntity extends BaseEntity {
     @Column
     private ShipType shipType;
 
-    @OneToMany(mappedBy = "fare")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id_fare")
     private List<FareThresholdEntity> fareThresholdList;
 
     @Column
