@@ -45,10 +45,10 @@ public class InvoiceEntity extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_port")
-    private PortEntity port;
+    private PortEntity idPort;
 
     @ManyToOne
     @JoinColumn(name = "id_quay")
-    private QuayEntity quay;
+    private QuayEntity idQuay;
 
 }

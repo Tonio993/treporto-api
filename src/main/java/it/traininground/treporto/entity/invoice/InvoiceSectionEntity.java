@@ -19,9 +19,6 @@ import java.util.List;
 @Entity(name = "INVOICE_SECTION")
 public class InvoiceSectionEntity extends BaseEntity {
 
-    @ManyToOne
-    private InvoiceEntity invoice;
-
     @Column
     private SectionType type;
 

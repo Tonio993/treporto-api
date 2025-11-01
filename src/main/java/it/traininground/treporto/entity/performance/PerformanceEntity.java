@@ -1,7 +1,6 @@
 package it.traininground.treporto.entity.performance;
 
 import it.traininground.treporto.entity.BaseEntity;
-import it.traininground.treporto.entity.invoice.InvoiceSectionEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -15,10 +14,6 @@ import java.math.BigDecimal;
 @Data
 @Entity(name = "PERFORMANCE")
 public class PerformanceEntity extends BaseEntity {
-
-    @ManyToOne
-    @JoinColumn(name = "id_section")
-    private InvoiceSectionEntity idSection;
 
     @ManyToOne
     @JoinColumn(name = "id_activity")

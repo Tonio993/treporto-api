@@ -15,7 +15,7 @@ public class QuayEntity extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_port")
-    private PortEntity port;
+    private PortEntity idPort;
 
     @Column
     private String name;
