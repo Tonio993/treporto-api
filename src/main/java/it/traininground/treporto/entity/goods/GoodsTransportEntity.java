@@ -25,7 +25,7 @@ public class GoodsTransportEntity extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_goods")
-    private GoodsEntity goods;
+    private GoodsEntity idGoods;
 
     @Column
     private BigDecimal amount;

@@ -17,11 +17,12 @@ import java.math.BigDecimal;
 public class PerformanceEntity extends BaseEntity {
 
     @ManyToOne
-    private InvoiceSectionEntity invoiceSection;
+    @JoinColumn(name = "id_section")
+    private InvoiceSectionEntity idSection;
 
     @ManyToOne
     @JoinColumn(name = "id_activity")
-    private ActivityEntity activity;
+    private ActivityEntity idActivity;
 
     @Column
     private Boolean missing;

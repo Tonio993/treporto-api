@@ -32,11 +32,11 @@ public class InvoiceEntity extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_client")
-    private ClientEntity client;
+    private ClientEntity idClient;
 
     @ManyToOne
     @JoinColumn(name = "id_company")
-    private CompanyEntity company;
+    private CompanyEntity idCompany;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "id_invoice")

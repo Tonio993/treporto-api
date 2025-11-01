@@ -2,9 +2,11 @@ package it.traininground.treporto.mapper.invoice;
 
 import it.traininground.treporto.entity.invoice.InvoiceSectionEntity;
 import it.traininground.treporto.mapper.common.ModelEntityMapper;
+import it.traininground.treporto.mapper.goods.GoodsTransportMapper;
+import it.traininground.treporto.mapper.performance.PerformanceMapper;
 import it.traininground.treporto.model.invoice.InvoiceSectionModel;
 import org.mapstruct.Mapper;
 
-@Mapper(config = ModelEntityMapper.class)
+@Mapper(config = ModelEntityMapper.class, uses = {PerformanceMapper.class, GoodsTransportMapper.class})
 public interface InvoiceSectionMapper extends ModelEntityMapper<InvoiceSectionModel, InvoiceSectionEntity> {
 }
