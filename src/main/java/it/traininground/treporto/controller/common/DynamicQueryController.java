@@ -1,7 +1,7 @@
 package it.traininground.treporto.controller.common;
 
 import it.traininground.treporto.model.DynamicQueryRequest;
-import it.traininground.treporto.service.common.DynamicQueryService;
+import it.traininground.treporto.service.common.dynamic.DynamicQueryService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

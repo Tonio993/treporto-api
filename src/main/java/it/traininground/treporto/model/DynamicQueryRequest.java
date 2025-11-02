@@ -9,8 +9,8 @@ import java.util.Map;
 @Data
 public class DynamicQueryRequest {
     private String entity;
-    private Map<String, String> joins;
-    private List<String> fields;
+    private List<String> joins;
+    private Map<String, String> fields;
     private Map<String, AggregationType> aggregations;
     private List<DynamicQueryFilter> filters;
     private List<String> groupBy;
