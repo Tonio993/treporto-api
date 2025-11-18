@@ -1,11 +1,11 @@
-package it.traininground.treporto.entity.invoice;
+package it.traininground.treporto.entity.form.invoice;
 
 import it.traininground.treporto.entity.BaseEntity;
-import it.traininground.treporto.entity.port.PortEntity;
-import it.traininground.treporto.entity.port.QuayEntity;
-import it.traininground.treporto.entity.registry.ClientEntity;
-import it.traininground.treporto.entity.registry.CompanyEntity;
-import it.traininground.treporto.entity.registry.ShipEntity;
+import it.traininground.treporto.entity.form.port.PortEntity;
+import it.traininground.treporto.entity.form.port.QuayEntity;
+import it.traininground.treporto.entity.form.registry.ClientEntity;
+import it.traininground.treporto.entity.form.registry.CompanyEntity;
+import it.traininground.treporto.entity.form.registry.ShipEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

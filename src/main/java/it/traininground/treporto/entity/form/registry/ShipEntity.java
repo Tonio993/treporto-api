@@ -1,4 +1,4 @@
-package it.traininground.treporto.entity.registry;
+package it.traininground.treporto.entity.form.registry;
 
 import it.traininground.treporto.entity.BaseEntity;
 import it.traininground.treporto.enums.ShipType;

@@ -1,7 +1,7 @@
-package it.traininground.treporto.entity.goods;
+package it.traininground.treporto.entity.form.goods;
 
 import it.traininground.treporto.entity.BaseEntity;
-import it.traininground.treporto.entity.invoice.InvoiceSectionEntity;
+import it.traininground.treporto.entity.form.invoice.InvoiceSectionEntity;
 import it.traininground.treporto.enums.TransportType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

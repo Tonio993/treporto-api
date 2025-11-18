@@ -32,7 +32,7 @@ public class DynamicQueryService {
         Root<?> root = query.from(entityClass);
 
         Map<String, Join<?, ?>> joins = buildJoinMap(request, root);
-        List<Selection<?>> selections = buildSelectionList(request, root, joins);
+        List<Selection<?>> selections = buildSelectionList(request, root, joins, entityClass);
         List<Predicate> predicates = buildPredicateList(request, root, joins, criteriaBuilder);
 
         query.multiselect(selections);
@@ -66,7 +66,7 @@ public class DynamicQueryService {
         return predicates;
     }
 
-    private List<Selection<?>> buildSelectionList(DynamicQueryRequest request, Root<?> root, Map<String, Join<?, ?>> joins) {
+    private List<Selection<?>> buildSelectionList(DynamicQueryRequest request, Root<?> root, Map<String, Join<?, ?>> joins, Class<?> entityClass) {
         List<Selection<?>> selections = new ArrayList<>();
         if (request.getFields() != null && !request.getFields().isEmpty()) {
             for (Map.Entry<String, String> entry : request.getFields().entrySet()) {
@@ -76,7 +76,11 @@ public class DynamicQueryService {
                 selections.add(path.alias(alias));
             }
         } else {
-            selections.add(root);
+            var entityType = entityManager.getMetamodel().entity(entityClass);
+            entityType.getAttributes().forEach(attr -> {
+                String fieldName = attr.getName();
+                selections.add(root.get(fieldName).alias(fieldName));
+            });
         }
         return selections;
     }

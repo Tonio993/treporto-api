@@ -1,4 +1,4 @@
-package it.traininground.treporto.entity.fare;
+package it.traininground.treporto.entity.form.fare;
 
 import it.traininground.treporto.entity.BaseEntity;
 import it.traininground.treporto.enums.ShipType;

@@ -1,4 +1,4 @@
-package it.traininground.treporto.entity.fare;
+package it.traininground.treporto.entity.form.performance;
 
 import it.traininground.treporto.entity.BaseEntity;
 import jakarta.persistence.Column;
@@ -10,13 +10,13 @@ import java.math.BigDecimal;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Entity(name = "FARE_THRESHOLD")
-public class FareThresholdEntity extends BaseEntity {
+@Entity(name = "ACTIVITY")
+public class ActivityEntity extends BaseEntity {
 
     @Column
-    private Integer threshold;
+    private String name;
 
     @Column
-    private BigDecimal price;
+    private BigDecimal performanceFactor;
 
 }

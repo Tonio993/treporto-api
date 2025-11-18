@@ -1,7 +1,7 @@
 package it.traininground.treporto.controller;
 
 import it.traininground.treporto.controller.common.CommonRepositoryController;
-import it.traininground.treporto.entity.registry.CompanyEntity;
+import it.traininground.treporto.entity.form.registry.CompanyEntity;
 import it.traininground.treporto.model.registry.CompanyModel;
 import it.traininground.treporto.service.CompanyService;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -6,6 +6,7 @@ import it.traininground.treporto.model.BaseModel;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Map;
@@ -18,12 +19,16 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 public abstract class CommonRepositoryService<MODEL extends BaseModel, ENTITY extends BaseEntity> {
 
-    private final EntityManager entityManager;
+    @Autowired
+    private EntityManager entityManager;
+
+    @Autowired
+    private IndirectEntitiesService indirectEntitiesService;
+
     private final ModelEntityMapper<MODEL, ENTITY> modelEntityMapper;
     private final Class<ENTITY> entityClazz;
 
-    protected CommonRepositoryService(EntityManager entityManager, ModelEntityMapper<MODEL, ENTITY> modelEntityMapper, Class<ENTITY> entityClazz) {
-        this.entityManager = entityManager;
+    protected CommonRepositoryService(ModelEntityMapper<MODEL, ENTITY> modelEntityMapper, Class<ENTITY> entityClazz) {
         this.modelEntityMapper = modelEntityMapper;
         this.entityClazz = entityClazz;
     }
@@ -74,6 +79,9 @@ public abstract class CommonRepositoryService<MODEL extends BaseModel, ENTITY ex
         ENTITY entity = modelEntityMapper.toEntity(model);
         entity.setId(null);
         entityManager.persist(entity);
+
+        indirectEntitiesService.checkForIndirectEntities(entityClazz, entity);
+
         return modelEntityMapper.toModel(entity);
     }
 
@@ -82,6 +90,9 @@ public abstract class CommonRepositoryService<MODEL extends BaseModel, ENTITY ex
         return get(id).map(currModel -> {
             ENTITY newEntity = modelEntityMapper.toEntity(newModel);
             newEntity.setId(id);
+
+            indirectEntitiesService.checkForIndirectEntities(entityClazz, newEntity);
+
             return modelEntityMapper.toModel(entityManager.merge(newEntity));
         });
     }

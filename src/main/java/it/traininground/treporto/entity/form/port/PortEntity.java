@@ -1,4 +1,4 @@
-package it.traininground.treporto.entity.port;
+package it.traininground.treporto.entity.form.port;
 
 import it.traininground.treporto.entity.BaseEntity;
 import jakarta.persistence.Column;

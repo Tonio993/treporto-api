@@ -1,6 +1,6 @@
 package it.traininground.treporto.mapper.invoice;
 
-import it.traininground.treporto.entity.invoice.InvoiceSectionEntity;
+import it.traininground.treporto.entity.form.invoice.InvoiceSectionEntity;
 import it.traininground.treporto.mapper.common.ModelEntityMapper;
 import it.traininground.treporto.mapper.goods.GoodsTransportMapper;
 import it.traininground.treporto.mapper.performance.PerformanceMapper;

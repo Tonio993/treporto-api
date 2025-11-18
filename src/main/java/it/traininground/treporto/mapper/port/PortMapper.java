@@ -1,6 +1,6 @@
 package it.traininground.treporto.mapper.port;
 
-import it.traininground.treporto.entity.port.PortEntity;
+import it.traininground.treporto.entity.form.port.PortEntity;
 import it.traininground.treporto.mapper.common.ModelEntityMapper;
 import it.traininground.treporto.model.port.PortModel;
 import org.mapstruct.Mapper;

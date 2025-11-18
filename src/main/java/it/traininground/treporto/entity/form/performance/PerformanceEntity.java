@@ -1,4 +1,4 @@
-package it.traininground.treporto.entity.performance;
+package it.traininground.treporto.entity.form.performance;
 
 import it.traininground.treporto.entity.BaseEntity;
 import jakarta.persistence.Column;

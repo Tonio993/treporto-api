@@ -1,7 +1,7 @@
 package it.traininground.treporto.controller;
 
 import it.traininground.treporto.controller.common.CommonRepositoryController;
-import it.traininground.treporto.entity.registry.ShipEntity;
+import it.traininground.treporto.entity.form.registry.ShipEntity;
 import it.traininground.treporto.model.registry.ShipModel;
 import it.traininground.treporto.service.ShipService;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package it.traininground.treporto.entity.registry;
+package it.traininground.treporto.entity.form.goods;
 
 import it.traininground.treporto.entity.BaseEntity;
 import jakarta.persistence.Column;
@@ -8,17 +8,10 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Entity(name = "COMPANY")
-public class CompanyEntity extends BaseEntity {
+@Entity(name = "GOODS")
+public class GoodsEntity extends BaseEntity {
 
     @Column
     private String name;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
